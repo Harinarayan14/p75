@@ -1,7 +1,8 @@
 
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer,createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
+import LoginScreen from './screens/LoginScreen';
 import ReadScreen from './screens/ReadScreen';
 import WriteScreen from './screens/WriteScreen';
 import React from 'react';
@@ -13,6 +14,10 @@ export default function App() {
   );
 }
 
+const Navigator = createSwitchNavigator({
+  LoginScreen:{screen: LoginScreen},
+  Write:{screen: WriteScreen}
+})
 
 const TabNavigator = createBottomTabNavigator({
   Write: {screen: WriteScreen},
@@ -48,5 +53,5 @@ const TabNavigator = createBottomTabNavigator({
 }
 );
 
-const AppContainer =  createAppContainer(TabNavigator);
+const AppContainer =  createAppContainer(Navigator);
 
