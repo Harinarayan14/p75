@@ -19,7 +19,7 @@ export default class LoginScreen extends React.Component {
             try{
                 const response = await firebase.auth().signInWithEmailAndPassword(email,password)
                 if(response){
-                    this.props.navigation.navigate("WriteScreen")
+                    this.props.navigation.navigate("Write")
                 }
 
 
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
         marginTop:50,
         width:100,
         height:50,
-        backgroundColor:"green",
-        color:"white"
+        backgroundColor:"green"
     }
 })
