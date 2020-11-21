@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet,KeyboardAvoidingView,ToastAndroid } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import {Header} from 'react-native-elements'
 import db from '../config'
 import firebase from 'firebase'
 export default class WriteScreen extends React.Component {
@@ -14,18 +15,31 @@ export default class WriteScreen extends React.Component {
       }
 
       submitStory=async()=>{
-        db.collection("Stories").doc(this.state.Title).set({
+        db.collection("Stories").doc(this.state.Title).update({
             Title:this.state.Title,
             Story:this.state.Story,
             AuthorName:this.state.AuthorName
         })
-      ToastAndroid.show("Successfully Submitted",ToastAndroid.SHORT)}
+        return(
+      ToastAndroid.show("Successfully Submitted",ToastAndroid.SHORT))}
+
+
     render(){
         return(
+          <View>
+            <Header
+          backgroundColor={'#DF3A01'}
+          centerComponent={{
+            text: 'Write Stories',
+            style: {
+              color: '#FFFFFF',
+              fontSize: 20,
+              fontWeight: 'bold',
+            },
+          }}
+      />
             <View style={styles.container}>
-            <Text style={styles.head}>
-                Write Stories
-            </Text>
+              
                 <View style={styles.inputView}>
                 <KeyboardAvoidingView behaviour="padding" enabled>     
             <TextInput
@@ -70,6 +84,7 @@ export default class WriteScreen extends React.Component {
             </View>
 
             </View>
+            </View>
             
         )}
     
@@ -107,8 +122,6 @@ const styles = StyleSheet.create({
     inputBox:{
       width:200,
       height:40,
-      borderWidth:1.5,
-      borderRightWidth:0,
       fontSize:20
     },
     storyBox:{
